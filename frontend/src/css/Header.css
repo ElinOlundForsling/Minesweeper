@@ -1,0 +1,27 @@
+.header {
+  z-index: 100;
+  margin-top: 1em;
+}
+
+h1 {
+  font-size: 3rem;
+}
+
+.btns-difficulty button {
+  z-index: 100;
+  margin: 10px;
+  background-color: white;
+  padding: 10px;
+  border-radius: 10px;
+  color: #22a6d6;
+}
+
+.btn-reset {
+  border-radius: 50% !important;
+}
+
+.timer {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
