@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "luxon": "^1.25.0",
+    "normalize.css": "^8.0.1"
+  }
+}
