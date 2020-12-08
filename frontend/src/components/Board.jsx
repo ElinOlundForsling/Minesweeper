@@ -93,7 +93,7 @@ const Board = ({ difficulty, endGame, setReset, timer }) => {
     return neighborMines.length;
   };
 
-  const getRevealCells = (startCellId, visited = []) => {
+  const getCellsToReveal = (startCellId, visited = []) => {
     const cell = getCell(startCellId);
     if (cell.mine) {
       return [startCellId];
@@ -111,7 +111,7 @@ const Board = ({ difficulty, endGame, setReset, timer }) => {
 
       return [
         startCellId,
-        ...toReveal.map(cellId => getRevealCells(cellId, visited)),
+        ...toReveal.map(cellId => getCellsToReveal(cellId, visited)),
       ].flat();
     }
   };
@@ -119,7 +119,7 @@ const Board = ({ difficulty, endGame, setReset, timer }) => {
   const revealCells = cell => {
     if (!cell.flagged && !cell.mine) {
       const num = getNum(cell);
-      const rC = getRevealCells(cell.id);
+      const rC = getCellsToReveal(cell.id);
       rC.forEach(cellId => {
         const cell = getCell(cellId);
         updateCell(cellId, getNum(cell));
