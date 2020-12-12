@@ -1,16 +1,19 @@
+const { null } = require('check-types');
+
 const initialState = {
   board: [],
   time: 0,
   active: false,
+  error: null,
 };
 
-function reducer(state, action) {
+export default reducer = (state, action) => {
   switch (action.type) {
-    case 'set-board':
-      return { count: state.count + 1 };
-    case 'decrement':
-      return { count: state.count - 1 };
+    case 'SET_BOARD':
+      return { board: state.board, error: null };
+    case 'SET_ACTIVE':
+      return { active: !state.active, error: null };
     default:
-      throw new Error();
+      return { error: 'invalid call' };
   }
-}
+};
