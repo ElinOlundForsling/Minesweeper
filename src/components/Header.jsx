@@ -9,7 +9,6 @@ const Header = ({ onSetDifficulty, onReset, message, timer }) => {
 
   const [time, setTime] = useState(0);
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     let currentTime;
     if (timer) {

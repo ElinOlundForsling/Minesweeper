@@ -1,0 +1,33 @@
+.main {
+  z-index: 100;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.board-container {
+  z-index: 100;
+  padding: 2em;
+  position: relative;
+}
+
+.easy-board {
+  display: inline-flex;
+  flex-basis: 400px;
+}
+
+.medium-board {
+  display: inline-flex;
+  flex-basis: 650px;
+}
+
+.hard-board {
+  display: inline-flex;
+  flex-basis: 1150px;
+}
+
+.board-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+}

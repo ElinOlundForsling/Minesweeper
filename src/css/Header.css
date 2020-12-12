@@ -10,7 +10,7 @@ h1 {
 .btns-difficulty button {
   z-index: 100;
   margin: 10px;
-  background-color: white;
+  background-color: rgba(67, 76, 145, 0.28);
   padding: 10px;
   border-radius: 10px;
   color: #22a6d6;

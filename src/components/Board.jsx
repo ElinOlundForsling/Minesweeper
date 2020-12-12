@@ -38,7 +38,7 @@ const Board = ({ difficulty, endGame, setReset, timer }) => {
   // };
 
   const getCell = id => {
-    return board.flat().find(cell => id.includes(cell.id));
+    return board.flat().find(cell => cell.id.includes(id));
   };
 
   const getCellAt = (x, y) => {
@@ -210,7 +210,6 @@ const Board = ({ difficulty, endGame, setReset, timer }) => {
 
   useEffect(() => {
     reset();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [difficulty, setReset]);
 
   return (

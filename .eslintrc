@@ -1,0 +1,16 @@
+{
+  "extends": ["eslint:recommended", "plugin:react/recommended"],
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "modules": true
+    }
+  },
+  "rules": {
+    "global-require": ["error"],
+    "no-unused-vars": "off",
+    "react/prop-types": 0,
+    "no-empty-pattern": "off"
+  }
+}

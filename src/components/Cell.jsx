@@ -1,4 +1,5 @@
 import React from 'react';
+import '../css/cell.css';
 
 const Cell = ({ revealed, mine, flagged, cellNum, id }) => {
   const display = () => {

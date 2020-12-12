@@ -1,44 +1,12 @@
-.main {
-  z-index: 100;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.board-container {
-  z-index: 100;
-  padding: 2em;
-  position: relative;
-}
-
-.easy-board {
-  display: inline-flex;
-  flex-basis: 400px;
-}
-
-.medium-board {
-  display: inline-flex;
-  flex-basis: 650px;
-}
-
-.hard-board {
-  display: inline-flex;
-  flex-basis: 1150px;
-}
-
-.board-wrapper {
-  display: flex;
-  flex-wrap: wrap;
-  width: 100%;
-}
-
 .cell {
   position: relative;
   margin: 1px;
   border: none;
-  background-color: #fff;
+  background: rgba(42, 50, 113, 0.28);
   border-radius: 10%;
   box-sizing: border-box;
+  transition: all 800ms cubic-bezier(0.19, 1, 0.22, 1);
+  overflow: hidden;
 }
 
 .easy-cell {
@@ -74,6 +42,14 @@
 
 .revealed {
   background-color: rgba(200, 200, 222, 0.2);
+}
+
+.hidden:hover {
+  border: 1px solid #22a6d6;
+  box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.3),
+    0 0 20px rgba(255, 255, 255, 0.2);
+  outline-color: rgba(255, 255, 255, 0);
+  outline-offset: 15px;
 }
 
 .fa-bomb {
