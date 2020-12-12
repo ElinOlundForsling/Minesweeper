@@ -46,7 +46,7 @@
 
 .hidden:hover {
   border: 1px solid #22a6d6;
-  box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.3),
+  box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.2),
     0 0 20px rgba(255, 255, 255, 0.2);
   outline-color: rgba(255, 255, 255, 0);
   outline-offset: 15px;

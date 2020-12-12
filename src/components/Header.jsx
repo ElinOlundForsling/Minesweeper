@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import '../css/Header.css';
+import '../css/header.css';
 
 const Header = ({ onSetDifficulty, onReset, message, timer }) => {
   const onClick = e => {

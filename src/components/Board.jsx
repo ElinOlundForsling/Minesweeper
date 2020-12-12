@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import '../css/Board.css';
+import React, { useState, useEffect, useRef } from 'react';
+import '../css/board.css';
 import Cell from './Cell';
 
 const Board = ({ difficulty, endGame, setReset, timer }) => {
@@ -25,17 +25,7 @@ const Board = ({ difficulty, endGame, setReset, timer }) => {
 
   const [board, setBoard] = useState(emptyBoard);
   const [firstMove, setFirstMove] = useState(true);
-  const [firstId, setFirstId] = useState(true);
-
-  // const resetBoard = () => {
-  //   const reset = board.map(row =>
-  //     row.map(col => {
-  //       col.mine = false;
-  //       return col;
-  //     }),
-  //   );
-  //   setBoard(reset);
-  // };
+  const [firstCell, setFirstCell] = useState(null);
 
   const getCell = id => {
     return board.flat().find(cell => cell.id.includes(id));
@@ -146,8 +136,8 @@ const Board = ({ difficulty, endGame, setReset, timer }) => {
 
   const reset = () => {
     setBoard(emptyBoard);
-    placeMines();
     setFirstMove(true);
+    // placeMines();
     timer(false);
   };
 
@@ -156,25 +146,24 @@ const Board = ({ difficulty, endGame, setReset, timer }) => {
     revealMines();
   };
 
-  const afterFirstClick = id => {
-    setFirstId(id);
+  const afterFirstClick = cell => {
+    setFirstCell(cell);
     endGame();
-    // placeMines();
     setFirstMove(false);
     timer(true);
+    placeMines(cell);
   };
 
   const onCellClick = e => {
+    console.log('Value: ', e.target);
+    console.log('Id: ', e.target.id);
     e.preventDefault();
     const cell = getCell(e.target.id);
     if (firstMove) {
-      // Replace me
-      if (cell.mine) {
-        cell.mine = false;
-      }
-      afterFirstClick(cell.id);
+      afterFirstClick(cell);
+    } else {
+      revealCells(cell);
     }
-    revealCells(cell);
   };
 
   const onMouseDown = e => {
@@ -191,22 +180,31 @@ const Board = ({ difficulty, endGame, setReset, timer }) => {
     return nonMines.every(c => c.revealed);
   };
 
-  const placeMines = () => {
+  const placeMines = cell => {
     const newBoard = emptyBoard;
     for (let m = 0; m < mines; m++) {
       let randomRow = Math.floor(Math.random() * ySize);
       let randomCol = Math.floor(Math.random() * xSize);
       if (
         !newBoard[randomRow][randomCol].mine &&
-        newBoard[randomRow][randomCol].id !== firstId
+        newBoard[randomRow][randomCol].id !== cell.id
       ) {
         newBoard[randomRow][randomCol].mine = true;
       } else {
         m--;
       }
     }
+    resettingRef.current = true;
     setBoard(newBoard);
   };
+
+  const resettingRef = useRef(false);
+  useEffect(() => {
+    if (resettingRef.current) {
+      resettingRef.current = false;
+      revealCells(firstCell);
+    }
+  }, [setBoard, board]);
 
   useEffect(() => {
     reset();
@@ -221,6 +219,7 @@ const Board = ({ difficulty, endGame, setReset, timer }) => {
               return (
                 <div
                   key={col.id}
+                  id={col.id}
                   onClick={onCellClick}
                   onMouseDown={onMouseDown}
                   onContextMenu={e => e.preventDefault()}
