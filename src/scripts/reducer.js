@@ -1,10 +1,3 @@
-const initialState = {
-  board: [],
-  time: 0,
-  active: false,
-  error: '',
-};
-
 const reducer = (state, action) => {
   switch (action.type) {
     case 'SET_BOARD':

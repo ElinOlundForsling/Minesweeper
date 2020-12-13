@@ -1,6 +1,7 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useReducer } from 'react';
 import '../css/board.css';
 import Cell from './Cell';
+import reducer from '../scripts/reducer';
 
 const Board = ({ difficulty, endGame, setReset, timer }) => {
   const { classN, xSize, ySize, mines } = difficulty;
@@ -23,9 +24,17 @@ const Board = ({ difficulty, endGame, setReset, timer }) => {
     }
   }
 
+  const initialState = {
+    board: [],
+    time: 0,
+    active: false,
+    error: '',
+  };
+
   const [board, setBoard] = useState(emptyBoard);
   const [firstMove, setFirstMove] = useState(true);
   const [firstCell, setFirstCell] = useState(null);
+  const [state, dispatch] = useReducer(reducer, initialState);
 
   const getCell = id => {
     return board.flat().find(cell => cell.id.includes(id));
@@ -137,7 +146,6 @@ const Board = ({ difficulty, endGame, setReset, timer }) => {
   const reset = () => {
     setBoard(emptyBoard);
     setFirstMove(true);
-    // placeMines();
     timer(false);
   };
 
@@ -155,8 +163,6 @@ const Board = ({ difficulty, endGame, setReset, timer }) => {
   };
 
   const onCellClick = e => {
-    console.log('Value: ', e.target);
-    console.log('Id: ', e.target.id);
     e.preventDefault();
     const cell = getCell(e.target.id);
     if (firstMove) {
@@ -204,7 +210,7 @@ const Board = ({ difficulty, endGame, setReset, timer }) => {
       resettingRef.current = false;
       revealCells(firstCell);
     }
-  }, [setBoard, board]);
+  }, [setBoard, board, placeMines]);
 
   useEffect(() => {
     reset();
