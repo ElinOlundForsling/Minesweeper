@@ -29,6 +29,7 @@ const Board = ({ difficulty, endGame, setReset, timer }) => {
     time: 0,
     active: false,
     error: '',
+    winTime: 0.0,
   };
 
   const [board, setBoard] = useState(emptyBoard);
@@ -140,6 +141,7 @@ const Board = ({ difficulty, endGame, setReset, timer }) => {
 
   const victory = () => {
     endGame('WON');
+    // dispatch({type: 'SET_SCORE', payload: })
     reset();
   };
 
@@ -155,6 +157,7 @@ const Board = ({ difficulty, endGame, setReset, timer }) => {
   };
 
   const afterFirstClick = cell => {
+    if (cell.flagged) return;
     setFirstCell(cell);
     endGame();
     setFirstMove(false);
@@ -188,6 +191,11 @@ const Board = ({ difficulty, endGame, setReset, timer }) => {
 
   const placeMines = cell => {
     const newBoard = emptyBoard;
+    for (let y = 0; y < ySize; y++) {
+      for (let x = 0; x < xSize; x++) {
+        newBoard[y][x].flagged = board[y][x].flagged;
+      }
+    }
     for (let m = 0; m < mines; m++) {
       let randomRow = Math.floor(Math.random() * ySize);
       let randomCol = Math.floor(Math.random() * xSize);
