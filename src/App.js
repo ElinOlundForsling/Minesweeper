@@ -9,6 +9,7 @@ function App() {
   const [message, setMessage] = useState('Minesweeper');
   const [reset, setReset] = useState(false);
   const [timer, setTimer] = useState(false);
+  const [time, setTime] = useState(0);
   const onSetDifficulty = input => {
     setTimer(false);
     setDifficulty(Settings[input]);
