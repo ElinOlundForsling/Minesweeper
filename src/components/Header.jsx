@@ -46,8 +46,13 @@ const Header = ({ state, dispatch, score }) => {
         <button onClick={() => setModalIsOpen(true)}>Highscore</button>
       </div>
       <div className='timer'>
-        <p>TIMER: {state.time}</p>
-        <p>MINES: {state.difficulty.mines}</p>
+        <p>
+          <i className='far fa-clock'></i> TIMER: {state.time}
+        </p>
+        <p>
+          <i className='fas fa-bomb header-mine'></i> MINES:{' '}
+          {state.difficulty.mines}
+        </p>
       </div>
       <HighscoreModal
         modalIsOpen={modalIsOpen}

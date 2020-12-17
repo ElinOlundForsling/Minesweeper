@@ -44,20 +44,41 @@
 }
 
 .modal button:hover {
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.1),
-    0 0 20px rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.05),
+    0 0 20px rgba(255, 255, 255, 0.05);
   outline-color: rgba(255, 255, 255, 0);
   outline-offset: 15px;
 }
 
-.modal th {
-  font-size: 1.5rem;
-  text-align: center;
+.close {
+  margin-top: 20px;
 }
 
 .modal table {
-  width: 100%;
+  width: 50%;
+  border-spacing: 0px;
+}
+
+.modal thead {
+  padding-top: 10px;
+}
+
+.modal th {
+  font-size: 1.5rem;
+  padding: 10px;
+  text-align: center;
+  background-color: rgba(42, 50, 113, 0.2);
+}
+
+.modal td {
+  border: none;
+  padding: 10px;
+  margin: 0;
+}
+
+.modal tr:nth-child(2n) {
+  background-color: rgba(42, 50, 113, 0.1);
 }
 
 .score {

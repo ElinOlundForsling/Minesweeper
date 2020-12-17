@@ -16,6 +16,10 @@ h1 {
   color: #22a6d6;
 }
 
+.btns-difficulty button:hover {
+  background-color: rgba(67, 76, 145, 0.5);
+}
+
 .btn-reset {
   border-radius: 50% !important;
 }
@@ -24,4 +28,13 @@ h1 {
   position: absolute;
   top: 20px;
   right: 20px;
+  text-align: right;
+}
+
+.timer p {
+  margin-bottom: 5px;
+}
+
+.header-mine {
+  color: #c97874 !important;
 }

@@ -71,7 +71,9 @@ const HighscoreModal = ({ modalIsOpen, setModalIsOpen, highscore }) => {
           })}
         </tbody>
       </table>
-      <button onClick={closeModal}>close</button>
+      <button onClick={closeModal} className='close'>
+        CLOSE
+      </button>
     </Modal>
   );
 };

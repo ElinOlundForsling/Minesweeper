@@ -9,7 +9,7 @@ const NewHighscoreModal = ({ modalOpen, setModalOpen, state, dispatch }) => {
 
   const [name, setName] = useState('');
 
-  const handleSubmit = e => {
+  const handleSubmit = () => {
     name.length > 0
       ? setHighscore(name, state.winTime, state.difficulty.dbName)
       : setHighscore('Anonymous', state.winTime, state.difficulty.dbName);
