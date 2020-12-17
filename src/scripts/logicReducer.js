@@ -1,6 +1,7 @@
 import emptyBoard from './emptyBoard';
 
 const logicReducer = (state, action) => {
+  let winTime;
   switch (action.type) {
     case 'SET_BOARD':
       return { ...state, board: action.payload, error: '' };
@@ -37,11 +38,12 @@ const logicReducer = (state, action) => {
         error: '',
       };
     case 'WON':
+      winTime = state.time;
       return {
         ...state,
         board: emptyBoard(state.difficulty),
         active: false,
-        winTime: state.time,
+        winTime,
         time: 0,
         firstMove: true,
         firstCell: null,

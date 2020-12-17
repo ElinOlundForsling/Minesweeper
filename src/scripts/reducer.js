@@ -1,4 +1,3 @@
-import { useReducer } from 'react';
 import combineReducers from 'react-combine-reducers';
 import emptyBoard from './emptyBoard';
 import Settings from '../schemas/Settings';
@@ -18,12 +17,15 @@ const initialLogicState = {
 };
 
 const initialHighscoreState = {
-  highscore: [],
+  easyHighscore: [],
+  mediumHighscore: [],
+  hardHighscore: [],
+  error: '',
 };
 
 const [minesweeperReducer, initialProfile] = combineReducers({
   logic: [logicReducer, initialLogicState],
-  location: [highscoreReducer, initialHighscoreState],
+  score: [highscoreReducer, initialHighscoreState],
 });
 
 export { minesweeperReducer, initialProfile };

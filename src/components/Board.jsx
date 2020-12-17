@@ -1,10 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import '../css/board.css';
 import Cell from './Cell';
 import useBoardLogic from './useBoardLogic';
+import NewHighscoreModal from './NewHighscoreModal';
 
-const Board = ({ state, dispatch }) => {
-  const { onMouseDown, onCellClick } = useBoardLogic(state, dispatch);
+const Board = ({ state, dispatch, score }) => {
+  const [modalOpen, setModalOpen] = useState(false);
+  const { onMouseDown, onCellClick } = useBoardLogic(
+    state,
+    dispatch,
+    setModalOpen,
+    score,
+  );
   const { classN } = state.difficulty;
 
   return (
@@ -38,6 +45,12 @@ const Board = ({ state, dispatch }) => {
           )}
         </div>
       </section>
+      <NewHighscoreModal
+        modalOpen={modalOpen}
+        setModalOpen={setModalOpen}
+        state={state}
+        dispatch={dispatch}
+      />
     </main>
   );
 };

@@ -1,7 +1,7 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import emptyBoard from '../scripts/emptyBoard';
 
-const useBoardLogic = (state, dispatch) => {
+const useBoardLogic = (state, dispatch, setModalOpen, score) => {
   const { xSize, ySize, mines } = state.difficulty;
 
   const getCell = id => {
@@ -107,6 +107,32 @@ const useBoardLogic = (state, dispatch) => {
   };
 
   const victory = () => {
+    switch (state.difficulty.classN) {
+      case 'easy':
+        if (
+          state.time < score.easyHighscore[score.easyHighscore.length - 1].score
+        ) {
+          setModalOpen(true);
+        }
+        break;
+      case 'medium':
+        if (
+          state.time <
+          score.mediumHighscore[score.easyHighscore.length - 1].score
+        ) {
+          setModalOpen(true);
+        }
+        break;
+      case 'hard':
+        if (
+          state.time < score.hardHighscore[score.easyHighscore.length - 1].score
+        ) {
+          setModalOpen(true);
+        }
+        break;
+      default:
+        console.error('whoopsie');
+    }
     dispatch({ type: 'WON' });
   };
 

@@ -2,17 +2,22 @@ import React, { useEffect, useState } from 'react';
 import '../css/header.css';
 import Settings from '../schemas/Settings';
 import HighscoreModal from './HighscoreModal';
+import { getHighscore } from '../scripts/firebaseActions';
 
-const Header = ({ state, dispatch }) => {
+const Header = ({ state, dispatch, score }) => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
   const onClick = e => {
     e.preventDefault();
     const input = e.target.textContent.toLowerCase();
-    dispatch({ type: 'GET_HIGHSCORE' });
-    console.log(state.highscore);
     dispatch({ type: 'SET_DIFFICULTY', payload: Settings[input] });
   };
+
+  useEffect(() => {
+    getHighscore(Settings.easy.dbName, Settings.easy.type, dispatch);
+    getHighscore(Settings.medium.dbName, Settings.medium.type, dispatch);
+    getHighscore(Settings.hard.dbName, Settings.hard.type, dispatch);
+  }, []);
 
   useEffect(() => {
     let currentTime;
@@ -47,6 +52,7 @@ const Header = ({ state, dispatch }) => {
       <HighscoreModal
         modalIsOpen={modalIsOpen}
         setModalIsOpen={setModalIsOpen}
+        highscore={score}
       />
     </header>
   );
