@@ -1,14 +1,29 @@
-const reducer = (state, action) => {
-  switch (action.type) {
-    case 'SET_BOARD':
-      return { board: state.board, error: '' };
-    case 'SET_SCORE':
-      return { score: action.payload, error: '' };
-    case 'SET_ACTIVE':
-      return { active: !state.active, error: '' };
-    default:
-      return { error: 'invalid call' };
-  }
+import { useReducer } from 'react';
+import combineReducers from 'react-combine-reducers';
+import emptyBoard from './emptyBoard';
+import Settings from '../schemas/Settings';
+import logicReducer from './logicReducer';
+import highscoreReducer from './highscoreReducer';
+
+const initialLogicState = {
+  board: emptyBoard(Settings.easy),
+  difficulty: Settings.easy,
+  active: false,
+  time: 0,
+  firstMove: true,
+  firstCell: null,
+  winTime: 0.0,
+  title: 'Minesweeper',
+  error: '',
 };
 
-export default reducer;
+const initialHighscoreState = {
+  highscore: [],
+};
+
+const [minesweeperReducer, initialProfile] = combineReducers({
+  logic: [logicReducer, initialLogicState],
+  location: [highscoreReducer, initialHighscoreState],
+});
+
+export { minesweeperReducer, initialProfile };

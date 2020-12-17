@@ -1,9 +1,6 @@
 import firebase from 'firebase/app';
-import 'firebase/firestore';
-import 'firebase/auth';
-import 'firebase/storage';
 
-const firebaseConfig = {
+var firebaseConfig = {
   apiKey: 'AIzaSyDO0ZiiWbAtdshxYikPBVpU5O3LKOZvnNU',
   authDomain: 'minesweeper-4ebc6.firebaseapp.com',
   projectId: 'minesweeper-4ebc6',
@@ -13,7 +10,5 @@ const firebaseConfig = {
 };
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
-firebase.firestore().settings({ timestampsInSnapshots: true });
-const storage = firebase.storage();
 
-export { storage, firebase as default };
+export default firebase;
